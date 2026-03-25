@@ -3,142 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anastasia | LocalTrans & Custom.MT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Anastasia | Tech & Localization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #050507;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #6366f1; /* Инновационный индиго */
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --demo-btn: #f59e0b; /* Оранжевый для демо, чтобы выделиться */
-            --text: #ffffff;
-            --text-muted: #94a3b8;
+            --bg-dark: #030305;
+            --neon-blue: #3b82f6;
+            --neon-purple: #8b5cf6;
+            --neon-pink: #ec4899;
+            --glass: rgba(20, 20, 25, 0.4);
+            --border: rgba(255, 255, 255, 0.08);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
-            background: var(--bg-color);
-            color: var(--text);
+            background-color: var(--bg-dark);
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
-            /* Живой фон с градиентами */
+            /* Анимированный многослойный фон */
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
+            animation: bgPulse 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .card {
-            width: 85%;
-            max-width: 380px;
+            width: 100%;
+            max-width: 400px;
             background: var(--glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 36px;
-            padding: 48px 30px; /* Немного больше отступы */
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 50px 30px 40px;
             text-align: center;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
-            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: floatUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
         }
 
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(40px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes floatUp {
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Обвязка для фото со свечением */
+        .avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px;
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            z-index: -1;
+            animation: spin 4s linear infinite;
+            filter: blur(10px);
+            opacity: 0.7;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .profile-img {
-            width: 120px; /* Чуть увеличим для фото */
-            height: 120px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            padding: 5px;
-            background: var(--accent-gradient);
-            margin-bottom: 28px;
             object-fit: cover;
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+            background-color: #1a1a2e; /* Заглушка, если фото грузится долю секунды */
         }
 
-        h1 { 
-            margin: 0; 
-            font-size: 30px; /* Крупнее имя */
-            font-weight: 600; 
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
             letter-spacing: -1px;
-            background: linear-gradient(to bottom, #fff, #b7c1cf);
+            background: linear-gradient(to right, #fff, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .subtitle { 
-            color: var(--accent); 
-            font-size: 14px; 
-            font-weight: 600;
+        .companies {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--neon-blue);
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 10px; 
-            margin-bottom: 24px; 
+            letter-spacing: 3px;
+            margin-top: 8px;
+            margin-bottom: 24px;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
         .tagline {
             font-size: 15px;
             line-height: 1.6;
-            margin-bottom: 36px;
-            color: var(--text-muted);
+            margin-bottom: 35px;
+            color: #a1a1aa;
             font-weight: 300;
         }
 
-        .links { display: flex; flex-direction: column; gap: 16px; }
+        .tagline span { color: #fff; font-weight: 400; }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
         .btn {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 18px;
-            border-radius: 18px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 15px;
-            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Кнопка Демо - приоритет №1 */
+        /* Дерзкая кнопка Демо */
         .btn-demo {
-            background: var(--demo-btn);
-            color: #000;
-            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4);
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-demo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
         }
 
-        /* Главная кнопка контакта — Telegram */
+        /* Кнопка Telegram с градиентом */
         .btn-tg {
-            background: var(--accent-gradient);
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
             color: white;
-            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Ссылки на сайты */
+        .btn-tg:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Строгие ИТ-кнопки для сайтов */
         .btn-site {
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: #e4e4e7;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .btn:hover { 
-            transform: scale(1.03) translateY(-2px);
-            filter: brightness(1.1);
+        .btn-site:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
 
-        .btn:active { transform: scale(0.98) translateY(1px); }
+        .btn:active { transform: scale(0.97); }
 
-        .footer-logo {
+        .footer {
             margin-top: 40px;
-            opacity: 0.3;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 10px;
+            color: #52525b;
             text-transform: uppercase;
             letter-spacing: 4px;
         }
@@ -146,26 +206,29 @@
 </head>
 <body>
 
-<div class="card">
-    <img src="avatar.jpeg" alt="Anastasia" class="profile-img">
-    
-    <h1>Анастасия</h1>
-    <div class="subtitle">LocalTrans & Custom.MT</div>
-
-    <div class="tagline">
-        Внедряю IT-решения и автоматизацию в процессы перевода. Делаю локализацию технологичной.
-    </div>
-
-    <div class="links">
-        <a href="https://forms.gle/gkPQvtXqxafHLVLP9" target="_blank" class="btn btn-demo">Запросить демо</a>
+<div class="container">
+    <div class="card">
         
-        <a href="https://t.me/@anastasia_mats class="btn btn-primary">Написать в Telegram</a>
+        <div class="avatar-container">
+            <img src="https://i.postimg.cc/pXVV1j4v/avatar.jpg" alt="Anastasia" class="profile-img">
+        </div>
         
-        <a href="https://localtrans.ru" target="_blank" class="btn btn-site">Сайт LocalTrans</a>
-        <a href="https://custom.mt" target="_blank" class="btn btn-site">Сайт Custom.MT</a>
-    </div>
+        <h1>Anastasia</h1>
+        <div class="companies">LocalTrans × Custom.MT</div>
 
-    <div class="footer-logo">Innovation in Localization</div>
+        <div class="tagline">
+            Архитектура локализации. <span>Внедряю AI и автоматизацию</span> в языковые процессы бизнеса.
+        </div>
+
+        <div class="links">
+            <a href="https://forms.gle/твоя_форма" target="_blank" class="btn btn-demo">Запросить демо</a>
+            <a href="https://t.me/anastasia_mats" class="btn btn-tg">Написать в Telegram</a>
+            <a href="https://localtrans.ru" target="_blank" class="btn btn-site">LocalTrans.ru</a>
+            <a href="https://custom.mt" target="_blank" class="btn btn-site">Custom.MT</a>
+        </div>
+
+        <div class="footer">Language Engineering</div>
+    </div>
 </div>
 
 </body>
