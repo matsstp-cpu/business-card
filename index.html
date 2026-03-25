@@ -95,6 +95,87 @@
 <body>
 
 <div class="card">
+    <img src="avatar.jpg" alt="Anastasia" class="profile-img">
+    
+    <h1>Анастасия</h1>
+    <p class="subtitle">LocalTrans | Sales & Marketing Management</p>
+
+    <div class="tagline">
+        Внедряю IT-решения и автоматизацию в процессы перевода. Делаю локализацию технологичной.
+    </div>
+
+    <div class="links">
+        <a href="https://t.me/@anastasia_mats class="btn btn-primary">Написать в Telegram</a>
+        <a href="#" class="btn btn-secondary">Наши IT-кейсы</a>
+        <a href="https://localtrans.ru" target="_blank" class="btn btn-secondary">Сайт LocalTrans</a>
+    </div>
+
+    <div class="footer-logo">LocalTrans Innovation</div>
+</div>
+
+</body>
+</html>
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px; }
+        p.subtitle { color: #a1a1aa; font-size: 14px; margin-top: 8px; margin-bottom: 24px; }
+
+        .tagline {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            color: #e4e4e7;
+        }
+
+        .links { display: flex; flex-direction: column; gap: 12px; }
+
+        .btn {
+            display: block;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .footer-logo {
+            margin-top: 32px;
+            opacity: 0.6;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
     <img src="https://via.placeholder.com/150" alt="Anastasia" class="profile-img">
     
     <h1>Анастасия</h1>
